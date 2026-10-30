@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>HUB After Dark - The Night Terminal</title>
-<style>:root{color-scheme:dark;background:#05090b}html,body{margin:0;min-height:100%;background:#05090b}body{box-sizing:border-box;padding:0}iframe{display:block;width:100%;min-height:100vh;height:100vh;margin:0;border:0;background:#05090b}</style>
+<style>:root{color-scheme:dark;background:#05090b}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05090b}body{box-sizing:border-box;padding:0}iframe{display:block;width:100%;height:100vh!important;height:100dvh!important;min-height:0;max-height:100dvh;margin:0;border:0;background:#05090b}</style>
 
 </head>
 <body>
@@ -2082,7 +2082,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 #haunted-shell .sh-shell[data-entry-state=opening] .sh-door-void{background:transparent;box-shadow:inset 0 0 22px #000b}
 @media(max-width:560px){#haunted-shell .sh-organic-frame{border-width:10px;border-image-width:10px}#haunted-shell .sh-header:before{border-width:10px;border-image-width:10px}#haunted-shell .sh-app,#haunted-shell .sh-app:hover{border-width:7px;border-image-width:7px;padding:7px}}
 &lt;/style&gt;
-&lt;div id=&quot;haunted-shell&quot; class=&quot;viz-carousel&quot; aria-label=&quot;Halloween shell concepts&quot;&gt;
+&lt;div id=&quot;haunted-shell&quot; class=&quot;sh-published-app&quot; data-layout=&quot;viewport-v2&quot; aria-label=&quot;Halloween shell concepts&quot;&gt;
   &lt;section data-variant=&quot;The chamber&quot; aria-label=&quot;The chamber: full iron sidebar&quot;&gt;
     &lt;div class=&quot;sh-shell sh-gated&quot; aria-label=&quot;Haunted fuel terminal application shell&quot; data-phase=&quot;locked&quot; data-entry-state=&quot;locked&quot;&gt;
       &lt;div class=&quot;sh-gantry&quot; aria-hidden=&quot;true&quot;&gt;&lt;div class=&quot;sh-gantry-beam&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sh-hoist&quot;&gt;&lt;span class=&quot;sh-sprocket&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;sh-hoist sh-hoist-right&quot;&gt;&lt;span class=&quot;sh-sprocket&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;sh-hoist-lamp&quot;&gt;&lt;/span&gt;&lt;div class=&quot;sh-gantry-label&quot;&gt;Fuel terminal // night shift&lt;span class=&quot;sh-gantry-phase&quot;&gt;Bay 13 · carriage locked&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
@@ -2826,7 +2826,91 @@ html&gt;body{padding:0}&lt;/style&gt;
 
 &lt;/script&gt;
 
-&lt;style&gt;:root{color-scheme:dark!important}html,body{background:#05090b!important}&lt;/style&gt;
+&lt;style id=&quot;published-layout&quot;&gt;/* The hosted app owns the viewport; the in-chat preview keeps its compact stage. */
+:root {
+  color-scheme: dark !important;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #05090b !important;
+}
+
+#haunted-shell.sh-published-app {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#haunted-shell.sh-published-app &gt; [data-variant] {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+#haunted-shell.sh-published-app &gt; [data-variant][hidden] {
+  display: none !important;
+}
+
+#haunted-shell.sh-published-app .sh-shell {
+  width: min(100%, 1440px);
+  max-width: 1440px;
+  height: 100%;
+  min-height: 0;
+  margin-inline: auto;
+  grid-template-rows: var(--sh-gantry-height) var(--sh-header-height) minmax(0, 1fr);
+}
+
+#haunted-shell.sh-published-app .sh-sidebar,
+#haunted-shell.sh-published-app .sh-main {
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #596353 #101716;
+}
+
+#haunted-shell.sh-published-app .sh-sidebar &gt; :not(.sh-skull-space) {
+  flex-shrink: 0;
+}
+
+#haunted-shell.sh-published-app .sh-skull-space {
+  min-height: 0;
+}
+
+/* The entrance remains edge-to-edge, independently of the app&#x27;s width cap. */
+#haunted-shell.sh-published-app .sh-entrance {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  padding: clamp(12px, 2.6dvh, 28px) 24px;
+  gap: clamp(10px, 2dvh, 18px);
+}
+
+#haunted-shell.sh-published-app .sh-doorway {
+  width: auto;
+  max-width: none;
+  height: min(76dvh, calc(100dvh - 190px), calc((100vw - 80px) * 1.5));
+  aspect-ratio: 2 / 3;
+}
+
+@media (max-width: 560px) {
+  #haunted-shell.sh-published-app .sh-entrance {
+    padding-inline: 17px;
+  }
+}
+&lt;/style&gt;
 
 &lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;

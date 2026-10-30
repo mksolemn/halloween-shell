@@ -20,3 +20,5 @@ This is a buildless static site. `index.html` contains the complete standalone d
 GitHub Pages publishes from the root of `main`. `.nojekyll` disables Jekyll processing. Fonts and the icon library load from public CDNs; the artwork and sound effects are included in the page.
 
 Preferences are stored locally in the visitor's browser. Each fresh visit starts at the locked door.
+
+The entrance fills the browser viewport. The application fills the viewport height and is centered at a maximum width of 1,440px. Short screens can scroll the navigation and content independently.
